@@ -1,7 +1,7 @@
 ﻿//===================================================================================================================//
 //-------------------------------------------------------------------------------------------------------------------//
 //                                                                                                                   //
-//  OfficeMasterKey                                                                                                  //
+//  OfficeMasterKey CLI                                                                                              //
 //                                                                                                                   //
 //  Remove document protection mechanisms for DOCX and XLSX files.                                                   //
 //                                                                                                                   //
@@ -29,15 +29,14 @@
 //
 //  HISTORY:
 //      2019-08-12 Original (Dan Gardner, ProcessBolt)
+//      2019-08-14 Split CLI and OfficeMasterKey library (Dan Gardner, ProcessBolt)
 //
 //
 
 using System;
-using DocumentFormat.OpenXml.Packaging;
-using DocumentFormat.OpenXml.Spreadsheet;
-using DocumentFormat.OpenXml.Wordprocessing;
+using OfficeMasterKey;
 
-namespace OfficeMasterKey
+namespace omkcli
 {
     class Program
     {
@@ -50,11 +49,13 @@ namespace OfficeMasterKey
 
             if (args.Length == 0)
             {
-                Console.WriteLine("Usage:  OfficeMasterKey file1 [file2 ... [ fileN ] ] ");
+                Console.WriteLine("Usage:  okmcli file1 [file2 ... [ fileN ] ] ");
                 Console.WriteLine("");
 
                 return;
             }
+
+            MasterKey masterKey = new MasterKey();
 
             foreach (string arg in args)
             {
@@ -62,13 +63,13 @@ namespace OfficeMasterKey
 
                 try
                 {
-                    if (FileIsXlsx(arg))
+                    if (masterKey.FileIsXlsx(arg))
                     {
-                        UnprotectXlsx(arg);
+                        masterKey.UnprotectXlsx(arg);
                     }
-                    else if (FileIsDocx(arg))
+                    else if (masterKey.FileIsDocx(arg))
                     {
-                        UnprotectDocx(arg);
+                        masterKey.UnprotectDocx(arg);
                     }
                     else
                     {
@@ -83,97 +84,8 @@ namespace OfficeMasterKey
             }
         }
 
-        /// <summary>
-        /// Remove the document protection elements from an XLSX (SpreadsheetDocument) file
-        /// </summary>
-        /// <param name="filename">XLSX file to remove protection</param>
-        public static void UnprotectXlsx(string filename)
-        {
-            using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(filename, true))
-            {
-                spreadsheetDocument.WorkbookPart.Workbook.RemoveAllChildren<WorkbookProtection>();
-
-                foreach (WorksheetPart worksheetPart in spreadsheetDocument.WorkbookPart.WorksheetParts)
-                {
-                    worksheetPart.Worksheet.RemoveAllChildren<SheetProtection>();
-                }
-
-                spreadsheetDocument.Save();
-
-                spreadsheetDocument.Close();
-            }
-        }
-
-        /// <summary>
-        /// Remove the document protection elements from an DOCX (WordprocessingDocument) file
-        /// </summary>
-        /// <param name="filename">DOCX file to remove protection</param>
-        private static void UnprotectDocx(string filename)
-        {
-            using (WordprocessingDocument wordprocessingDocument = WordprocessingDocument.Open(filename, true))
-            {
-                wordprocessingDocument.MainDocumentPart.DocumentSettingsPart.Settings.RemoveAllChildren<DocumentProtection>();
-
-                wordprocessingDocument.Save();
-
-                wordprocessingDocument.Close();
-            }
-        }
-
-        /// <summary>
-        /// Determines if a file is a valid XLSX (OpenXML SpreadsheetDocument) document.
-        /// </summary>
-        /// <param name="filename">Name of file to query</param>
-        /// <returns>True if valid XLSX file.</returns>
-        public static bool FileIsXlsx(string filename)
-        {
-            try
-            {
-                /* Try to open file as a SpreadsheetDocument */
-                using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(filename, true))
-                {
-                    return true;
-                }
-            }
-            catch (System.IO.FileFormatException)
-            {
-                /* Is not an OpenXML container */
-                return false;
-            }
-            catch (DocumentFormat.OpenXml.Packaging.OpenXmlPackageException)
-            {
-                /* It is an OpenXML container, but does not have the correct parts */
-                return false;
-            }
-        }
-
-        /// <summary>
-        /// Determines if a file is a valid DOCX (OpenXML WordprocessingDocument) document.
-        /// </summary>
-        /// <param name="filename">Name of file to query</param>
-        /// <returns>True if valid DOCX file.</returns>
-        public static bool FileIsDocx(string filename)
-        {
-            try
-            {
-                /* Try to open file as a WordprocessingDocument */
-                using (WordprocessingDocument spreadsheetDocument = WordprocessingDocument.Open(filename, true))
-                {
-                    return true;
-                }
-            }
-            catch (System.IO.FileFormatException)
-            {
-                /* Is not an OpenXML container */
-                return false;
-            }
-            catch (DocumentFormat.OpenXml.Packaging.OpenXmlPackageException)
-            {
-                /* It is an OpenXML container, but does not have the correct parts */
-                return false;
-            }
-        }
     }
+
 }
 
 //-------------------------------------------------------------------------------------------------------------------//

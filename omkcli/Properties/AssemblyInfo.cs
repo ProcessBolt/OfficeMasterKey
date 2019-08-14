@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("OfficeMasterKey")]
-[assembly: AssemblyDescription("Remove document protection mechanisms for DOCX and XLSX files.")]
+[assembly: AssemblyTitle("omkcli")]
+[assembly: AssemblyDescription("Office Master Key Command Line Interface")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ProcessBolt, Inc.")]
 [assembly: AssemblyProduct("OfficeMasterKey")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("84aad5a0-653c-44b1-b091-2db813da827c")]
+[assembly: Guid("eca381c0-996e-4882-805d-025e6bcd008a")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.0.0.0")]
-[assembly: AssemblyFileVersion("1.0.0.0")]
+[assembly: AssemblyVersion("1.0.1.0")]
+[assembly: AssemblyFileVersion("1.0.1.0")]
