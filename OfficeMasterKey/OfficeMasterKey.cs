@@ -39,6 +39,9 @@ using DocumentFormat.OpenXml.Wordprocessing;
 
 namespace OfficeMasterKey
 {
+    /// <summary>
+    /// The MasterKey class
+    /// </summary>
     public class MasterKey
     {
         /// <summary>

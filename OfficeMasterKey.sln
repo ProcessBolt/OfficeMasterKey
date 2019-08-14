@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfficeMasterKey", "OfficeMa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "omkcli", "omkcli\omkcli.csproj", "{ECA381C0-996E-4882-805D-025E6BCD008A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "omkwpf", "omkwpf\omkwpf.csproj", "{17AF2065-1509-4D65-9636-B5D39A4834B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{ECA381C0-996E-4882-805D-025E6BCD008A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECA381C0-996E-4882-805D-025E6BCD008A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECA381C0-996E-4882-805D-025E6BCD008A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{17AF2065-1509-4D65-9636-B5D39A4834B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17AF2065-1509-4D65-9636-B5D39A4834B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17AF2065-1509-4D65-9636-B5D39A4834B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17AF2065-1509-4D65-9636-B5D39A4834B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
