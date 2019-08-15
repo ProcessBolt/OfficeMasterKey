@@ -20,8 +20,8 @@
             </ListView.View>
         </ListView>
         <Button x:Name="ExitButton" Content="Exit" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center" Width="75" Margin="6" Click="ExitButton_Click" />
-        <Button x:Name="SelectButton" Grid.Row="0" Content="Select Files..." HorizontalAlignment="Left" Margin="6,10,0,0" VerticalAlignment="Top" Width="79"/>
-        <Label Content="or drag and drop XLSX and/or DOCX files." Grid.Row="0" HorizontalAlignment="Left" Margin="84,0" VerticalAlignment="Center" Height="26" Width="619"/>
+        <Button x:Name="SelectButton" Grid.Row="0" Content="Select Files..." HorizontalAlignment="Left" Margin="6,10,0,0" VerticalAlignment="Top" Width="79" Height="22"/>
+        <Label Content="or drag and drop XLSX and/or DOCX files." Grid.Row="0" HorizontalAlignment="Left" Margin="84,7,0,5.4" VerticalAlignment="Center" Height="26" Width="619"/>
 
     </Grid>
 </Window>

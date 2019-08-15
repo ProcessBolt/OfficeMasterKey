@@ -30,6 +30,7 @@
 //  HISTORY:
 //      2019-08-12 Original (Dan Gardner, ProcessBolt)
 //      2019-08-14 Split CLI and OfficeMasterKey library (Dan Gardner, ProcessBolt)
+//      2019-08-15 Added XxxxIsProtected methods (Dan Gardner, ProcessBolt)
 //
 //
 
@@ -135,5 +136,89 @@ namespace OfficeMasterKey
             }
         }
 
+        /// <summary>
+        /// Determine if an XLSX file has protection that can be removed.
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns>True if file has protection that can be removed, false otherwise.</returns>
+        public bool XlsxIsProtected(string filename)
+        {
+            using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(filename, true))
+            {
+                if (null != spreadsheetDocument.WorkbookPart.Workbook.GetFirstChild<WorkbookProtection>())
+                {
+                    return true;
+                }
+
+                foreach (WorksheetPart worksheetPart in spreadsheetDocument.WorkbookPart.WorksheetParts)
+                {
+                    if (null != worksheetPart.Worksheet.GetFirstChild<SheetProtection>())
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Determine if an XLSX file has workbook protection that can be removed.
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns>True if file has protection that can be removed, false otherwise.</returns>
+        public bool XlsxIsWorkbookProtected(string filename)
+        {
+            using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(filename, true))
+            {
+                if (null != spreadsheetDocument.WorkbookPart.Workbook.GetFirstChild<WorkbookProtection>())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Determine if an XLSX file has one or more worksheets with protection that can be removed.
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns>True if file has protection that can be removed, false otherwise.</returns>
+        public bool XlsxIsWorksheetProtected(string filename)
+        {
+            using (SpreadsheetDocument spreadsheetDocument = SpreadsheetDocument.Open(filename, true))
+            {
+                foreach (WorksheetPart worksheetPart in spreadsheetDocument.WorkbookPart.WorksheetParts)
+                {
+                    if (null != worksheetPart.Worksheet.GetFirstChild<SheetProtection>())
+                    {
+                        return true;
+                    }
+                }
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Determine if an DOCX file has protection that can be removed.
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <returns>True if file has protection that can be removed, false otherwise.</returns>
+        public bool DocxIsProtected(string filename)
+        {
+            using (WordprocessingDocument wordprocessingDocument = WordprocessingDocument.Open(filename, true))
+            {
+                if (null != wordprocessingDocument.MainDocumentPart.DocumentSettingsPart.Settings.GetFirstChild<DocumentProtection>())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
     }
+
 }

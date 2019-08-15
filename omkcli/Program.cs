@@ -30,6 +30,7 @@
 //  HISTORY:
 //      2019-08-12 Original (Dan Gardner, ProcessBolt)
 //      2019-08-14 Split CLI and OfficeMasterKey library (Dan Gardner, ProcessBolt)
+//      2019-08-15 Added XxxxIsProtected methods (Dan Gardner, ProcessBolt)
 //
 //
 
@@ -65,17 +66,47 @@ namespace omkcli
                 {
                     if (masterKey.FileIsXlsx(arg))
                     {
-                        masterKey.UnprotectXlsx(arg);
+                        if (masterKey.XlsxIsProtected(arg))
+                        {
+                            string protectedParts = "";
+
+                            if (masterKey.XlsxIsWorkbookProtected(arg) && masterKey.XlsxIsWorksheetProtected(arg))
+                            {
+                                protectedParts = "[Workbook,Worksheet]";
+                            }
+                            else if (masterKey.XlsxIsWorkbookProtected(arg))
+                            {
+                                protectedParts = "[Workbook]";
+                            }
+                            else if (masterKey.XlsxIsWorksheetProtected(arg))
+                            {
+                                protectedParts = "[Worksheet]";
+                            }
+
+                            masterKey.UnprotectXlsx(arg);
+                            Console.WriteLine("  OK. " + protectedParts);
+                        }
+                        else
+                        {
+                            Console.WriteLine("  Not protected.");
+                        }
                     }
                     else if (masterKey.FileIsDocx(arg))
                     {
-                        masterKey.UnprotectDocx(arg);
+                        if (masterKey.DocxIsProtected(arg))
+                        {
+                            masterKey.UnprotectDocx(arg);
+                            Console.WriteLine("  OK.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("  Not protected.");
+                        }
                     }
                     else
                     {
                         throw new ApplicationException("Not recognized as valid DOCX or XLSX file type.");
                     }
-                    Console.WriteLine("  OK.");
                 }
                 catch (Exception ex)
                 {
