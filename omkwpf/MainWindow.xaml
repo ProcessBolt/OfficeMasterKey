@@ -5,22 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:omkwpf"
         mc:Ignorable="d"
-        Title="Office Master Key" Height="450" Width="800">
+        Title="Office Master Key" Height="450" Width="800" AllowDrop="True" DragEnter="Window_DragEnter" DragOver="Window_DragOver" Drop="Window_Drop" Icon="Images/ProcessBoltLogo.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="38"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="32"></RowDefinition>
         </Grid.RowDefinitions>
-        <ListView HorizontalAlignment="Stretch" Margin="6,6,6,0" Grid.Row="1" VerticalAlignment="Stretch">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+        
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" HorizontalAlignment="Stretch" Margin="10,6,6,0" Grid.Row="1" VerticalAlignment="Stretch">
+            <TextBlock x:Name="StatusText"  Text=""/>
+        </ScrollViewer>
+
         <Button x:Name="ExitButton" Content="Exit" HorizontalAlignment="Right" Grid.Row="2" VerticalAlignment="Center" Width="75" Margin="6" Click="ExitButton_Click" />
-        <Button x:Name="SelectButton" Grid.Row="0" Content="Select Files..." HorizontalAlignment="Left" Margin="6,10,0,0" VerticalAlignment="Top" Width="79" Height="22"/>
+        <Button x:Name="SelectButton" Grid.Row="0" Content="Select Files..." HorizontalAlignment="Left" Margin="6,10,0,0" VerticalAlignment="Top" Width="79" Height="22" Click="SelectButton_Click"/>
         <Label Content="or drag and drop XLSX and/or DOCX files." Grid.Row="0" HorizontalAlignment="Left" Margin="84,7,0,5.4" VerticalAlignment="Center" Height="26" Width="619"/>
 
     </Grid>
