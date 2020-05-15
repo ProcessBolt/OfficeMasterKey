@@ -1,3 +1,5 @@
+# Created with :heart: by the [ProcessBolt Team](https://processbolt.com)
+
 # OfficeMasterKey
 .NET library for removing document protection mechanisms for DOCX and XLSX files.
 
@@ -8,5 +10,3 @@ Command line interface (CLI) for removing document protection mechanisms for DOC
 
 # Office Master Key Windows Desktop App (omkwpf)
 Windows desktop application (.exe) for removing document protection mechanisms for DOCX and XLSX files using the OfficeMasterKey library.
-
-# Created with love by the ProcessBolt Team
