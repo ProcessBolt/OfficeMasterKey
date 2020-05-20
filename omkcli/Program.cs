@@ -9,7 +9,7 @@
 //                                                                                                                   //
 //-------------------------------------------------------------------------------------------------------------------//
 //                                                                                                                   //
-//  Copyright 2019 ProcessBolt, Inc.                                                                                 //
+//  Copyright 2019-2020 ProcessBolt, Inc.                                                                            //
 //                                                                                                                   //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated     //
 //  documentation files (the “Software”), to deal in the Software without restriction, including without limitation  //
@@ -50,7 +50,7 @@ namespace omkcli
 
             if (args.Length == 0)
             {
-                Console.WriteLine("Usage:  okmcli file1 [file2 ... [ fileN ] ] ");
+                Console.WriteLine("Usage:  omkcli file1 [file2 ... [ fileN ] ] ");
                 Console.WriteLine("");
 
                 return;

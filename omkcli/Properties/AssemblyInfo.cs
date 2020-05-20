@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("ProcessBolt, Inc.")]
 [assembly: AssemblyProduct("OfficeMasterKey")]
-[assembly: AssemblyCopyright("Copyright © 2019 ProcessBolt, Inc.")]
+[assembly: AssemblyCopyright("Copyright © 2019-2020 ProcessBolt, Inc.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
